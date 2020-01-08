@@ -3,10 +3,12 @@
 // ------------ Vars ------------ //
 let randy;
 let start = false;
+let offset = 20;
 
 // ------------ Setup ------------ // 
 function setup() {
-   createCanvas(windowWidth, windowHeight);
+   let cvs = createCanvas(windowWidth - offset, windowHeight - offset);
+   cvs.style('display', 'block');
    randy = new DrawWalker(80, 4);
    drawWarning();
 }
@@ -46,10 +48,13 @@ function mouseClicked() {
 
 // ------------ Window Resizing ------------ // 
 function windowResized() {
-   resizeCanvas(windowWidth, windowHeight);
+   resizeCanvas(windowWidth - offset, windowHeight - offset);
    if (randy != null) {
       randy.boundX = windowWidth;
       randy.bounY = windowHeight;
+   }
+   if(!start){
+      drawWarning();
    }
 }
 
